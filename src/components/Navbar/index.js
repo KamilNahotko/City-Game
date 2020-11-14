@@ -55,13 +55,17 @@ function Navbar(props) {
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
-          <ListItemText primary="Strona Główna" />
+          <Link className={classes.styledLink} to="/home">
+            <ListItemText primary="Strona Główna" />
+          </Link>
         </ListItem>
         <ListItem button>
           <ListItemIcon>
             <AccountCircle />
           </ListItemIcon>
-          <ListItemText primary="Profil Użytkownika" />
+          <Link className={classes.styledLink} to="/user-page">
+            <ListItemText primary="Profil Użytkownika" />
+          </Link>
         </ListItem>
         <ListItem button>
           <ListItemIcon>
@@ -126,7 +130,11 @@ function Navbar(props) {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Profil</MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link className={classes.styledLink} to="/user-page">
+                  Profil
+                </Link>
+              </MenuItem>
               <MenuItem onClick={handleClose}>Moje konto</MenuItem>
               <MenuItem onClick={handleClose}>
                 <Link className={classes.styledLink} to="/">
