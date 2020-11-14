@@ -51,22 +51,22 @@ function Navbar(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List component="nav" aria-label="main mailbox folders">
-        <ListItem button>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <Link className={classes.styledLink} to="/home">
+        <Link className={classes.styledLink} to="/home">
+          <ListItem button>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
             <ListItemText primary="Strona Główna" />
-          </Link>
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <AccountCircle />
-          </ListItemIcon>
-          <Link className={classes.styledLink} to="/user-page">
+          </ListItem>
+        </Link>
+        <Link className={classes.styledLink} to="/user-page">
+          <ListItem button>
+            <ListItemIcon>
+              <AccountCircle />
+            </ListItemIcon>
             <ListItemText primary="Profil Użytkownika" />
-          </Link>
-        </ListItem>
+          </ListItem>
+        </Link>
         <ListItem button>
           <ListItemIcon>
             <GroupIcon />
@@ -130,17 +130,13 @@ function Navbar(props) {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>
-                <Link className={classes.styledLink} to="/user-page">
-                  Profil
-                </Link>
-              </MenuItem>
+              <Link className={classes.styledLink} to="/user-page">
+                <MenuItem onClick={handleClose}>Profil</MenuItem>
+              </Link>
               <MenuItem onClick={handleClose}>Moje konto</MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Link className={classes.styledLink} to="/">
-                  Wyloguj
-                </Link>
-              </MenuItem>
+              <Link className={classes.styledLink} to="/">
+                <MenuItem onClick={handleClose}>Wyloguj</MenuItem>
+              </Link>
             </Menu>
           </div>
         </Toolbar>
