@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import {
   withStyles,
   Grid,
@@ -7,21 +6,44 @@ import {
   Paper,
   Button,
   Typography,
+  Link,
 } from "@material-ui/core";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import styles from "./styles";
 
-const LoginPage = ({ classes }) => (
-  <Grid className={classes.root} container>
-    <Grid className={classes.image} item xs={false} sm={4} md={7} />
-    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-      <Link to="/" className={classes.styledLink}>
-        <Button color="primary" size="large" className={classes.iconButton}>
-          <ArrowBackIcon fontSize="large" />
-          Wróć
-        </Button>
-      </Link>
+const Login = ({ classes, isVisibility, setIsVisibility, setTypeModal }) => {
+  const toggler = () => {
+    setIsVisibility(!isVisibility);
+  };
+
+  const changeModalToRegister = () => {
+    setTypeModal("register");
+  };
+
+  const changeModalToReset = () => {
+    setTypeModal("resetPassword");
+  };
+
+  return (
+    <Grid
+      className={classes.root}
+      item
+      xs={12}
+      component={Paper}
+      elevation={6}
+      square
+    >
+      <Button
+        onClick={() => toggler()}
+        color="primary"
+        size="large"
+        className={classes.iconButton}
+      >
+        <ArrowBackIcon fontSize="large" />
+        Wróć
+      </Button>
+
       <div className={classes.wrapper}>
         <Typography variant="h4" component="h2" gutterBottom>
           Logowanie
@@ -62,12 +84,16 @@ const LoginPage = ({ classes }) => (
         </form>
         <Grid container>
           <Grid item xs>
-            <Link to="/reset-password" variant="body2">
+            <Link href="#" onClick={() => changeModalToReset()} variant="body2">
               Zrejestuj hasło
             </Link>
           </Grid>
           <Grid item>
-            <Link to="/register" variant="body2">
+            <Link
+              href="#"
+              onClick={() => changeModalToRegister()}
+              variant="body2"
+            >
               Załóż konto
             </Link>
           </Grid>
@@ -93,7 +119,7 @@ const LoginPage = ({ classes }) => (
         </Grid>
       </div>
     </Grid>
-  </Grid>
-);
+  );
+};
 
-export default withStyles(styles)(LoginPage);
+export default withStyles(styles)(Login);

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import {
   withStyles,
   Grid,
@@ -11,16 +10,29 @@ import {
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import styles from "./styles";
 
-const ResetPasswordPage = ({ classes }) => (
-  <Grid className={classes.root} container>
-    <Grid className={classes.image} item xs={false} sm={4} md={7} />
-    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-      <Link to="/login" className={classes.styledLink}>
-        <Button color="primary" size="large" className={classes.iconButton}>
-          <ArrowBackIcon fontSize="large" />
-          Back
-        </Button>
-      </Link>
+const ResetPassword = ({ classes, setTypeModal }) => {
+  const changeModal = () => {
+    setTypeModal("login");
+  };
+  return (
+    <Grid
+      className={classes.root}
+      item
+      xs={12}
+      component={Paper}
+      elevation={6}
+      square
+    >
+      <Button
+        onClick={() => changeModal()}
+        color="primary"
+        size="large"
+        className={classes.iconButton}
+      >
+        <ArrowBackIcon fontSize="large" />
+        Back
+      </Button>
+
       <div className={classes.wrapper}>
         <Typography variant="h4" component="h2" gutterBottom>
           Zresetuj Hasło
@@ -50,7 +62,7 @@ const ResetPasswordPage = ({ classes }) => (
         </form>
       </div>
     </Grid>
-  </Grid>
-);
+  );
+};
 
-export default withStyles(styles)(ResetPasswordPage);
+export default withStyles(styles)(ResetPassword);

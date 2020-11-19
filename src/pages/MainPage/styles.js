@@ -11,6 +11,7 @@ const styles = (theme) => ({
     fontWeight: "500",
     textShadow: "2px 2px 5px black",
     marginTop: theme.spacing(20),
+    color: "#fff",
     [theme.breakpoints.down("sm")]: {
       fontSize: "3rem",
     },
@@ -23,6 +24,25 @@ const styles = (theme) => ({
   },
   styledLink: {
     textDecoration: "none",
+  },
+  showLogin: {
+    position: "fixed",
+    zIndex: "10",
+    background: "white",
+    width: "450px",
+    minHeight: "100vh",
+    right: "0",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+  },
+  hideLogin: {
+    display: "none",
+  },
+  test: {
+    color: "red",
+    position: "fixed",
+    zIndex: "-1",
   },
 });
 

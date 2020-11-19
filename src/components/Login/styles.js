@@ -1,12 +1,6 @@
-import background from "../../assets/images/background-home.jpg";
 const styles = (theme) => ({
   root: {
     height: "100vh",
-  },
-  image: {
-    background: `url(${background})`,
-    backgroundRepeat: "no-repat",
-    backgroundSize: "cover",
   },
   wrapper: {
     margin: theme.spacing(0, 4),
@@ -20,6 +14,16 @@ const styles = (theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 3),
+  },
+  googleButton: {
+    marginTop: theme.spacing(3),
+    background: "#DB4437",
+    "&:hover": {
+      background: "#f00",
+    },
+  },
+  fbButton: {
+    marginTop: theme.spacing(3),
   },
   iconButton: {
     margin: theme.spacing(4, 0, 0, 4),

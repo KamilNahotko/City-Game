@@ -133,7 +133,9 @@ function Navbar(props) {
               <Link className={classes.styledLink} to="/user-page">
                 <MenuItem onClick={handleClose}>Profil</MenuItem>
               </Link>
-              <MenuItem onClick={handleClose}>Moje konto</MenuItem>
+              <Link className={classes.styledLink} to="/user-settings">
+                <MenuItem onClick={handleClose}>Moje konto</MenuItem>
+              </Link>
               <Link className={classes.styledLink} to="/">
                 <MenuItem onClick={handleClose}>Wyloguj</MenuItem>
               </Link>

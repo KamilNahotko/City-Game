@@ -1,12 +1,6 @@
-import background from "../../assets/images/background-home.jpg";
 const styles = (theme) => ({
   root: {
     height: "100vh",
-  },
-  image: {
-    background: `url(${background})`,
-    backgroundRepeat: "no-repat",
-    backgroundSize: "cover",
   },
   wrapper: {
     margin: theme.spacing(0, 4),
@@ -23,9 +17,6 @@ const styles = (theme) => ({
   },
   iconButton: {
     margin: theme.spacing(4, 0, 0, 4),
-  },
-  styledLink: {
-    textDecoration: "none",
   },
 });
 

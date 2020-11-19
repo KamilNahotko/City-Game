@@ -1,6 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
+import {
+  Typography,
+  Grid,
+  Avatar,
+  Divider,
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Navbar from "../../components/Navbar";
 
@@ -13,9 +24,28 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
   typography: {
-    flexGrow: 1,
+    marginLeft: theme.spacing(3),
   },
   toolbar: theme.mixins.toolbar,
+  large: {
+    width: theme.spacing(12),
+    height: theme.spacing(12),
+  },
+  divider: {
+    width: "100%",
+    margin: theme.spacing(2, 2),
+  },
+  list: {
+    width: "100%",
+    maxHeight: 200,
+    overflow: "auto",
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+    marginTop: theme.spacing(2),
+  },
+  styledLink: {
+    textDecoration: "none",
+  },
 }));
 
 function UserPage(props) {
@@ -25,26 +55,85 @@ function UserPage(props) {
       <Navbar />
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        <Grid container justify="center" alignItems="center">
+          <Grid item container justify="center" alignItems="center" xs={6}>
+            <Avatar className={classes.large}>K</Avatar>
+            <Typography className={classes.typography}>
+              Kamil Nahotko
+            </Typography>
+          </Grid>
+          <Grid container justify="flex-end" item xs={6}>
+            <Link to="/user-settings" className={classes.styledLink}>
+              <Button variant="contained" color="primary">
+                Edytuj profil
+              </Button>
+            </Link>
+          </Grid>
+          <Divider className={classes.divider} />
+          <Grid container justify="center" alignItems="center">
+            <Grid
+              container
+              direction="column"
+              item
+              alignItems="center"
+              lg={6}
+              xs={12}
+            >
+              <Typography variant="h5" component="h2">
+                Ilość wygranych gier: <span>0</span>
+              </Typography>
+            </Grid>
+            <Grid
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+              item
+              xs={12}
+              lg={6}
+            >
+              <Typography variant="h5" component="h2">
+                Znajomi:
+              </Typography>
+              <List
+                component="nav"
+                className={classes.list}
+                aria-label="contacts"
+              >
+                <ListItem button>
+                  <ListItemIcon>
+                    <Avatar />
+                  </ListItemIcon>
+                  <ListItemText primary="Chelsea Otakan" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon>
+                    <Avatar />
+                  </ListItemIcon>
+                  <ListItemText primary="Chelsea Otakan" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon>
+                    <Avatar />
+                  </ListItemIcon>
+                  <ListItemText primary="Chelsea Otakan" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon>
+                    <Avatar />
+                  </ListItemIcon>
+                  <ListItemText primary="Chelsea Otakan" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon>
+                    <Avatar />
+                  </ListItemIcon>
+                  <ListItemText primary="Eric Hoffman" />
+                </ListItem>
+              </List>
+            </Grid>
+          </Grid>
+        </Grid>
       </main>
     </div>
   );

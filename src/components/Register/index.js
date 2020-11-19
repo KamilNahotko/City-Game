@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import {
   withStyles,
   Grid,
@@ -7,20 +6,35 @@ import {
   Paper,
   Button,
   Typography,
+  Link,
 } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import styles from "./styles";
 
-const RegisterPage = ({ classes }) => (
-  <Grid className={classes.root} container>
-    <Grid className={classes.image} item xs={false} sm={4} md={7} />
-    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-      <Link to="/login" className={classes.styledLink}>
-        <Button color="primary" size="large" className={classes.iconButton}>
-          <ArrowBackIcon fontSize="large" />
-          Wróć
-        </Button>
-      </Link>
+const Register = ({ classes, setTypeModal }) => {
+  const changeModal = () => {
+    setTypeModal("login");
+  };
+
+  return (
+    <Grid
+      className={classes.root}
+      item
+      xs={12}
+      component={Paper}
+      elevation={6}
+      square
+    >
+      <Button
+        onClick={() => changeModal()}
+        color="primary"
+        size="large"
+        className={classes.iconButton}
+      >
+        <ArrowBackIcon fontSize="large" />
+        Wróć
+      </Button>
+
       <div className={classes.wrapper}>
         <Typography variant="h4" component="h2" gutterBottom>
           Rejestracja
@@ -87,14 +101,14 @@ const RegisterPage = ({ classes }) => (
         </form>
         <Grid container>
           <Grid item xs>
-            <Link to="#" variant="body2">
+            <Link href="#" onClick={() => changeModal()} variant="body2">
               Mam już konto
             </Link>
           </Grid>
         </Grid>
       </div>
     </Grid>
-  </Grid>
-);
+  );
+};
 
-export default withStyles(styles)(RegisterPage);
+export default withStyles(styles)(Register);
