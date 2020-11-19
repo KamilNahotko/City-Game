@@ -109,10 +109,13 @@ function Navbar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <LocationCityIcon />
-          <Typography className={classes.typography} variant="h6" noWrap>
-            City Game
-          </Typography>
+          <Link className={classes.logo} to="/home">
+            <LocationCityIcon className={classes.CityIcon} />
+            <Typography className={classes.typography} variant="h6" noWrap>
+              City Game
+            </Typography>
+          </Link>
+
           <div>
             <IconButton
               aria-label="account of current user"

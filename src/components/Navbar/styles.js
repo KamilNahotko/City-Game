@@ -26,11 +26,18 @@ const styles = makeStyles((theme) => ({
     width: drawerWidth,
   },
   typography: {
-    flexGrow: 1,
+    marginLeft: theme.spacing(2),
   },
   styledLink: {
     textDecoration: "none",
     color: "black",
+  },
+  logo: {
+    textDecoration: "none",
+    color: "white",
+    display: "flex",
+    flexGrow: 1,
+    alignItems: "center",
   },
 }));
 
