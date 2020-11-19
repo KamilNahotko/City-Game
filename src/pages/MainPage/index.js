@@ -6,6 +6,7 @@ import {
   Typography,
   Divider,
   Slide,
+  ClickAwayListener,
 } from "@material-ui/core";
 import styles from "./styles";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
@@ -18,7 +19,10 @@ const MainPage = ({ classes }) => {
   const [typeModal, setTypeModal] = useState("login");
 
   const toggler = () => {
-    setIsVisibility(!isVisibility);
+    setIsVisibility((prev) => !prev);
+  };
+  const handleClickAway = () => {
+    setIsVisibility(false);
   };
   return (
     <>
@@ -58,7 +62,7 @@ const MainPage = ({ classes }) => {
         </Grid>
         <Grid item xs={12}>
           <Button
-            onClick={() => toggler()}
+            onClick={toggler}
             variant="contained"
             size="large"
             color="primary"
@@ -67,40 +71,45 @@ const MainPage = ({ classes }) => {
             Dołącz
           </Button>
         </Grid>
-        <Slide
-          className={classes.showLogin}
-          direction="left"
-          timeout={1200}
-          in={isVisibility}
+        <ClickAwayListener
+          mouseEvent="onMouseDown"
+          onClickAway={handleClickAway}
         >
-          <Grid
-            container
-            item
-            direction="row"
-            justify="flex-end"
-            alignItems="center"
-            xs={12}
+          <Slide
+            className={classes.showLogin}
+            direction="left"
+            timeout={1200}
+            in={isVisibility}
           >
-            {(() => {
-              switch (typeModal) {
-                case "login":
-                  return (
-                    <Login
-                      isVisibility={isVisibility}
-                      setIsVisibility={setIsVisibility}
-                      setTypeModal={setTypeModal}
-                    />
-                  );
-                case "register":
-                  return <Register setTypeModal={setTypeModal} />;
-                case "resetPassword":
-                  return <ResetPassword setTypeModal={setTypeModal} />;
-                default:
-                  return null;
-              }
-            })()}
-          </Grid>
-        </Slide>
+            <Grid
+              container
+              item
+              direction="row"
+              justify="flex-end"
+              alignItems="center"
+              xs={12}
+            >
+              {(() => {
+                switch (typeModal) {
+                  case "login":
+                    return (
+                      <Login
+                        isVisibility={isVisibility}
+                        setIsVisibility={setIsVisibility}
+                        setTypeModal={setTypeModal}
+                      />
+                    );
+                  case "register":
+                    return <Register setTypeModal={setTypeModal} />;
+                  case "resetPassword":
+                    return <ResetPassword setTypeModal={setTypeModal} />;
+                  default:
+                    return null;
+                }
+              })()}
+            </Grid>
+          </Slide>
+        </ClickAwayListener>
       </Grid>
     </>
   );
