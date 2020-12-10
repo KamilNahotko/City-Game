@@ -25,7 +25,7 @@ const ListItemGame = ({ classes, comment, time }) => {
               className={classes.inline}
               color="textPrimary"
             >
-              Napisał o: {+time}
+              {"Napisał o: " + time}
             </Typography>
           }
           secondary={
