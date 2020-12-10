@@ -1,17 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import styles from "./styles";
 import { List, withStyles, Grid } from "@material-ui/core";
 import ListItemGame from "./ListItemGame";
 import AddComment from "./AddComment";
 
-const Game = ({ classes }) => {
-  const [inputText, setInputText] = useState("");
-  const [comments, setComments] = useState([
-    { text: "New York", id: "1" },
-    { text: "Legnica", id: "2" },
-    { text: "Wrocław", id: "3" },
-    { text: "Paris", id: "4" },
-  ]);
+const Game = ({ classes, comments }) => {
   return (
     <Grid className={classes.root} container justify="center">
       <Grid item>
@@ -31,15 +25,15 @@ const Game = ({ classes }) => {
             />
           ))}
         </List>
-        <AddComment
-          setInputText={setInputText}
-          inputText={inputText}
-          setComments={setComments}
-          comments={comments}
-        />
+        <AddComment />
       </Grid>
     </Grid>
   );
 };
 
-export default withStyles(styles)(Game);
+const mapStateToProps = (state) => {
+  const { comments } = state;
+  return { comments };
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(Game));

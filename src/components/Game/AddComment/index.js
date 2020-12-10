@@ -1,14 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { addComment as addCommentAction } from "../../../actions";
 import styles from "./styles";
 import { TextField, withStyles, Button } from "@material-ui/core";
 
-const AddComment = ({
-  classes,
-  setInputText,
-  inputText,
-  setComments,
-  comments,
-}) => {
+const AddComment = ({ classes, addComment }) => {
+  const [inputText, setInputText] = useState("");
   const d = new Date();
   const currentHour = d.getHours();
   const currentMinutes = d.getMinutes();
@@ -20,10 +17,7 @@ const AddComment = ({
 
   const submitCommentHandler = (e) => {
     e.preventDefault();
-    setComments([
-      ...comments,
-      { text: inputText, id: Math.random() * 1000, time: currentTime },
-    ]);
+    addComment(inputText, currentTime);
     setInputText("");
   };
   return (
@@ -53,4 +47,12 @@ const AddComment = ({
   );
 };
 
-export default withStyles(styles)(AddComment);
+const mapDispatchToProps = (dispatch) => ({
+  addComment: (comment, currentTime) =>
+    dispatch(addCommentAction(comment, currentTime)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(withStyles(styles)(AddComment));

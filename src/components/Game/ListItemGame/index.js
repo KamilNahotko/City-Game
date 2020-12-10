@@ -18,12 +18,21 @@ const ListItemGame = ({ classes, comment, time }) => {
           <Avatar alt="Kamil Nahotko" src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>
         <ListItemText
-          primary={"Napisał o: " + time}
+          primary={
+            <Typography
+              component="span"
+              variant="body2"
+              className={classes.inline}
+              color="textPrimary"
+            >
+              Napisał o: {+time}
+            </Typography>
+          }
           secondary={
             <>
               <Typography
                 component="span"
-                variant="body2"
+                variant="body1"
                 className={classes.inline}
                 color="textPrimary"
               >
