@@ -45,7 +45,7 @@ export async function fetchData(url, setFunc, setErrFunc) {
     })
     .catch((err) => {
       setErrFunc(err);
-      console.log(res);
+      console.log(err);
     });
 }
 

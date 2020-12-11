@@ -20,6 +20,8 @@ const MainPage = ({ classes }) => {
 
   const [isVisibility, setIsVisibility] = useState(false);
   const [typeModal, setTypeModal] = useState("login");
+  const [error, setErrors] = useState({});
+  const [test, setTest] = useState({});
 
   const toggler = () => {
     setIsVisibility((prev) => !prev);
@@ -27,12 +29,6 @@ const MainPage = ({ classes }) => {
   const handleClickAway = () => {
     setIsVisibility(false);
   };
-
-  console.log(API_URL + "/test");
-
-  const [error, setErrors] = useState({});
-  const [test, setTest] = useState({});
-
   useEffect(() => {
     fetchData(
       API_URL + "/test",
