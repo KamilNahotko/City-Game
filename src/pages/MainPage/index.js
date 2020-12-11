@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   withStyles,
   Button,
@@ -13,12 +13,10 @@ import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import Login from "../../components/Login";
 import Register from "../../components/Register";
 import ResetPassword from "../../components/ResetPassword";
-import {API_BASE_URL} from "../../config"
+import { API_URL, splxFetchData,fetchData } from "../../api/apiUtils";
 
 
 const MainPage = ({ classes }) => {
-
-  let obj = [];
 
   const [isVisibility, setIsVisibility] = useState(false);
   const [typeModal, setTypeModal] = useState("login");
@@ -30,12 +28,25 @@ const MainPage = ({ classes }) => {
     setIsVisibility(false);
   };
 
-  fetch(API_BASE_URL+'/test')
-  .then(response => response.json())
-  .then(data => console.log(data));
+  console.log(API_URL + "/test");
+
+  const [error, setErrors] = useState({});
+  const [test, setTest] = useState({});
+
+  useEffect(() => {
+    fetchData(
+      API_URL + "/test",
+      setTest,
+      setErrors
+    );
+    }, [setTest,setErrors]);
+
+    
+    
 
   return (
     <>
+    {console.log(test)}
       <Grid
         className={classes.styledGrid}
         alignItems="center"
@@ -68,7 +79,6 @@ const MainPage = ({ classes }) => {
             with the release of Letraset sheets containing Lorem Ipsum passages,
             and more recently with desktop publishing software like Aldus
             PageMaker including versions of Lorem Ipsum.
-            {obj.name}
           </Typography>
         </Grid>
         <Grid item xs={12}>
