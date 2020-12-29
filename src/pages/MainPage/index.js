@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   withStyles,
   Button,
@@ -13,15 +13,10 @@ import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import Login from "../../components/Login";
 import Register from "../../components/Register";
 import ResetPassword from "../../components/ResetPassword";
-import { API_URL, splxFetchData,fetchData } from "../../api/apiUtils";
-
 
 const MainPage = ({ classes }) => {
-
   const [isVisibility, setIsVisibility] = useState(false);
   const [typeModal, setTypeModal] = useState("login");
-  const [error, setErrors] = useState({});
-  const [test, setTest] = useState({});
 
   const toggler = () => {
     setIsVisibility((prev) => !prev);
@@ -29,20 +24,8 @@ const MainPage = ({ classes }) => {
   const handleClickAway = () => {
     setIsVisibility(false);
   };
-  useEffect(() => {
-    fetchData(
-      API_URL + "/test",
-      setTest,
-      setErrors
-    );
-    }, [setTest,setErrors]);
-
-    
-    
-
   return (
     <>
-    {console.log(test)}
       <Grid
         className={classes.styledGrid}
         alignItems="center"
