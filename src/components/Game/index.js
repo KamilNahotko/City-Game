@@ -1,18 +1,21 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import styles from "./styles";
 import { withStyles, Grid, Paper } from "@material-ui/core";
 import DescriptionGame from "./DescriptionGame";
 import FormGame from "./FormGame";
 
 const Game = ({ classes }) => {
+  const state = useSelector((state) => state.games);
+  const currentGame = useSelector((state) => state.currentGame);
+
   return (
     <Paper justify="center" className={classes.styledPaper}>
       <Grid className={classes.root} container justify="center">
         <Grid lg={6} sm={12} item>
           <img
             className={classes.img}
-            src="https://source.unsplash.com/random"
+            src={state[currentGame].img}
             alt="random"
           />
         </Grid>
@@ -25,9 +28,4 @@ const Game = ({ classes }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  const { comments } = state;
-  return { comments };
-};
-
-export default connect(mapStateToProps)(withStyles(styles)(Game));
+export default withStyles(styles)(Game);

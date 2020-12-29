@@ -1,8 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styles from "./styles";
 import { Typography, withStyles, Paper } from "@material-ui/core";
 
-const description = ({ classes }) => {
+const Description = ({ classes }) => {
+  const state = useSelector((state) => state.games);
+  const currentGame = useSelector((state) => state.currentGame);
   return (
     <>
       <div>
@@ -15,10 +18,7 @@ const description = ({ classes }) => {
             Opis:
           </Typography>
           <p className={classes.styledParagraph}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto
-            accusamus, veniam quidem ducimus possimus beatae debitis voluptate
-            necessitatibus repellendus explicabo, eveniet cupiditate dolore,
-            tenetur excepturi neque tempore reiciendis quis dicta.
+            {state[currentGame].description}
           </p>
         </Paper>
       </div>
@@ -26,4 +26,4 @@ const description = ({ classes }) => {
   );
 };
 
-export default withStyles(styles)(description);
+export default withStyles(styles)(Description);

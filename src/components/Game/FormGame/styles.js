@@ -9,9 +9,12 @@ const styles = (theme) => ({
     width: "100%",
     marginTop: theme.spacing(2),
   },
-  button: {
-    width: "200px",
+  buttons: {
+    display: "flex",
     marginTop: theme.spacing(4),
+  },
+  styledButton: {
+    margin: theme.spacing(2),
   },
 });
 

@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addComment as addCommentAction } from "../../../actions";
 import styles from "./styles";
 import { TextField, withStyles, Button } from "@material-ui/core";
+import { setCurrentGame } from "../../../actions/index";
 
-const FormGame = ({ classes, addComment }) => {
+const FormGame = ({ classes }) => {
   const [inputCity, setInputCity] = useState("");
   const [inputStreet, setInputStreet] = useState("");
-  const d = new Date();
-  const currentHour = d.getHours();
-  const currentMinutes = d.getMinutes();
-  const currentTime = currentHour + ":" + currentMinutes;
+  const state = useSelector((state) => state.games);
+  const dispatch = useDispatch();
 
   const inputCityHandler = (e) => {
     setInputCity(e.target.value);
@@ -21,10 +20,16 @@ const FormGame = ({ classes, addComment }) => {
 
   const submitCommentHandler = (e) => {
     e.preventDefault();
-    addComment(inputCity, inputStreet, currentTime);
+    dispatch(addCommentAction(inputCity, inputStreet));
     setInputCity("");
     setInputStreet("");
   };
+
+  const randomGameHandler = () => {
+    const randomIndex = Math.floor(Math.random() * state.length);
+    dispatch(setCurrentGame(randomIndex));
+  };
+
   return (
     <form
       onSubmit={submitCommentHandler}
@@ -46,22 +51,27 @@ const FormGame = ({ classes, addComment }) => {
         label="Wpisz ulicę"
         value={inputStreet}
       />
-
-      <Button
-        className={classes.button}
-        type="submit"
-        variant="contained"
-        color="primary"
-      >
-        Odgadnij
-      </Button>
+      <div className={classes.buttons}>
+        <Button
+          onClick={randomGameHandler}
+          className={classes.styledButton}
+          type="button"
+          variant="contained"
+          color="primary"
+        >
+          Nowe miejsce
+        </Button>
+        <Button
+          className={classes.styledButton}
+          type="submit"
+          variant="contained"
+          color="primary"
+        >
+          Odgadnij
+        </Button>
+      </div>
     </form>
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  addComment: (city, street, currentTime) =>
-    dispatch(addCommentAction(city, street, currentTime)),
-});
-
-export default connect(null, mapDispatchToProps)(withStyles(styles)(FormGame));
+export default withStyles(styles)(FormGame);
