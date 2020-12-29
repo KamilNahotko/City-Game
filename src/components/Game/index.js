@@ -1,33 +1,27 @@
 import React from "react";
 import { connect } from "react-redux";
 import styles from "./styles";
-import { List, withStyles, Grid } from "@material-ui/core";
-import ListItemGame from "./ListItemGame";
-import AddComment from "./AddComment";
+import { withStyles, Grid, Paper } from "@material-ui/core";
+import DescriptionGame from "./DescriptionGame";
+import FormGame from "./FormGame";
 
-const Game = ({ classes, comments }) => {
+const Game = ({ classes }) => {
   return (
-    <Grid className={classes.root} container justify="center">
-      <Grid item>
-        <img
-          className={classes.img}
-          src="https://source.unsplash.com/random"
-          alt="random"
-        />
+    <Paper justify="center" className={classes.styledPaper}>
+      <Grid className={classes.root} container justify="center">
+        <Grid lg={6} sm={12} item>
+          <img
+            className={classes.img}
+            src="https://source.unsplash.com/random"
+            alt="random"
+          />
+        </Grid>
+        <Grid lg={6} sm={12} item>
+          <DescriptionGame />
+          <FormGame />
+        </Grid>
       </Grid>
-      <Grid item className={classes.commentSection}>
-        <List className={classes.list}>
-          {comments.map((comment) => (
-            <ListItemGame
-              key={comment.id}
-              comment={comment.text}
-              time={comment.time}
-            />
-          ))}
-        </List>
-        <AddComment />
-      </Grid>
-    </Grid>
+    </Paper>
   );
 };
 

@@ -1,21 +1,25 @@
 const styles = (theme) => ({
   root: {
     marginTop: theme.spacing(4),
-  },
-  list: {
-    width: "100%",
-    maxWidth: "500px",
-    maxHeight: "700px",
-    backgroundColor: theme.palette.background.paper,
-    overflow: "auto",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   img: {
-    width: "100%",
-    maxWidth: "400px",
+    width: "90%",
     height: "auto",
+    margin: theme.spacing(2),
   },
   commentSection: {
     marginLeft: theme.spacing(4),
+  },
+  styledPaper: {
+    padding: theme.spacing(4),
+    width: "60%",
+    margin: "0 auto",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
 });
 

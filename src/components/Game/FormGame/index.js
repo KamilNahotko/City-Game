@@ -4,21 +4,26 @@ import { addComment as addCommentAction } from "../../../actions";
 import styles from "./styles";
 import { TextField, withStyles, Button } from "@material-ui/core";
 
-const AddComment = ({ classes, addComment }) => {
-  const [inputText, setInputText] = useState("");
+const FormGame = ({ classes, addComment }) => {
+  const [inputCity, setInputCity] = useState("");
+  const [inputStreet, setInputStreet] = useState("");
   const d = new Date();
   const currentHour = d.getHours();
   const currentMinutes = d.getMinutes();
   const currentTime = currentHour + ":" + currentMinutes;
 
-  const inputTextHandler = (e) => {
-    setInputText(e.target.value);
+  const inputCityHandler = (e) => {
+    setInputCity(e.target.value);
+  };
+  const inputStreetHandler = (e) => {
+    setInputStreet(e.target.value);
   };
 
   const submitCommentHandler = (e) => {
     e.preventDefault();
-    addComment(inputText, currentTime);
-    setInputText("");
+    addComment(inputCity, inputStreet, currentTime);
+    setInputCity("");
+    setInputStreet("");
   };
   return (
     <form
@@ -28,11 +33,18 @@ const AddComment = ({ classes, addComment }) => {
       autoComplete="off"
     >
       <TextField
-        onChange={inputTextHandler}
+        onChange={inputCityHandler}
         className={classes.comment}
         id="standard-basic"
-        label="Odgadnij miejsce"
-        value={inputText}
+        label="Wpisz miejscowosć"
+        value={inputCity}
+      />
+      <TextField
+        onChange={inputStreetHandler}
+        className={classes.comment}
+        id="standard-basic"
+        label="Wpisz ulicę"
+        value={inputStreet}
       />
 
       <Button
@@ -41,18 +53,15 @@ const AddComment = ({ classes, addComment }) => {
         variant="contained"
         color="primary"
       >
-        Dodaj komentarz
+        Odgadnij
       </Button>
     </form>
   );
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  addComment: (comment, currentTime) =>
-    dispatch(addCommentAction(comment, currentTime)),
+  addComment: (city, street, currentTime) =>
+    dispatch(addCommentAction(city, street, currentTime)),
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(withStyles(styles)(AddComment));
+export default connect(null, mapDispatchToProps)(withStyles(styles)(FormGame));

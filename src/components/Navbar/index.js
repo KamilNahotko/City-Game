@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { useTheme, withStyles } from "@material-ui/core/styles";
-import styles from "./styles";
+import { useTheme, makeStyles } from "@material-ui/core/styles";
 import {
   AppBar,
   CssBaseline,
@@ -27,9 +26,51 @@ import GroupIcon from "@material-ui/icons/Group";
 import GavelIcon from "@material-ui/icons/Gavel";
 import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
 
-function Navbar(props) {
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+  },
+  drawer: {
+    [theme.breakpoints.up("sm")]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
+    },
+  },
+  // necessary for content to be below app bar
+  toolbar: theme.mixins.toolbar,
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  typography: {
+    marginLeft: theme.spacing(2),
+  },
+  styledLink: {
+    textDecoration: "none",
+    color: "black",
+  },
+  logo: {
+    textDecoration: "none",
+    color: "white",
+    display: "flex",
+    flexGrow: 1,
+    alignItems: "center",
+  },
+}));
+
+const Navbar = (props) => {
   const { window } = props;
-  const classes = styles();
+  const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -178,10 +219,10 @@ function Navbar(props) {
       </nav>
     </div>
   );
-}
+};
 
 Navbar.propTypes = {
   window: PropTypes.func,
 };
 
-export default withStyles(styles)(Navbar);
+export default Navbar;

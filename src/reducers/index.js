@@ -1,5 +1,5 @@
 const initialState = {
-  comments: [
+  games: [
     { id: "1", text: "New York", time: "13" },
     { id: "2", text: "Legnica", time: "13" },
     { id: "3", text: "Wrocław", time: "13" },
@@ -9,12 +9,11 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_COMMENT":
+    case "ADD_NEW_GUESS":
       return {
         ...state,
-        comments: [...state.comments, action.payload],
+        games: [...state.games, action.payload],
       };
-      break;
     default:
       return state;
   }
