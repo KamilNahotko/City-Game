@@ -1,14 +1,19 @@
 const styles = (theme) => ({
   root: {
     marginTop: theme.spacing(4),
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+  },
+  list: {
+    width: "100%",
+    maxWidth: "500px",
+    maxHeight: "500px",
+    minHeight: "500px",
+    backgroundColor: theme.palette.background.paper,
+    overflow: "auto",
   },
   img: {
     width: "90%",
+    maxWidth: "400px",
     height: "auto",
-    margin: theme.spacing(2),
   },
   commentSection: {
     marginLeft: theme.spacing(4),
@@ -20,6 +25,10 @@ const styles = (theme) => ({
     [theme.breakpoints.down("sm")]: {
       width: "100%",
     },
+  },
+  StyledGridImg: {
+    display: "flex",
+    justifyContent: "center",
   },
 });
 

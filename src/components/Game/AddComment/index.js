@@ -5,29 +5,29 @@ import styles from "./styles";
 import { TextField, withStyles, Button } from "@material-ui/core";
 import { setCurrentGame } from "../../../actions/index";
 
-const FormGame = ({ classes }) => {
-  const [inputCity, setInputCity] = useState("");
+const AddComment = ({ classes }) => {
   const [inputStreet, setInputStreet] = useState("");
   const state = useSelector((state) => state.games);
   const dispatch = useDispatch();
 
-  const inputCityHandler = (e) => {
-    setInputCity(e.target.value);
-  };
   const inputStreetHandler = (e) => {
     setInputStreet(e.target.value);
   };
 
   const submitCommentHandler = (e) => {
     e.preventDefault();
-    dispatch(addCommentAction(inputCity, inputStreet));
-    setInputCity("");
+    dispatch(addCommentAction(inputStreet));
     setInputStreet("");
   };
 
   const randomGameHandler = () => {
     const randomIndex = Math.floor(Math.random() * state.length);
-    dispatch(setCurrentGame(randomIndex));
+    console.log(randomIndex);
+    if (state[0].isGuessed === true) {
+      dispatch(setCurrentGame(randomIndex));
+    } else {
+      console.log("Brak nowych konkurencji");
+    }
   };
 
   return (
@@ -38,40 +38,22 @@ const FormGame = ({ classes }) => {
       autoComplete="off"
     >
       <TextField
-        onChange={inputCityHandler}
-        className={classes.comment}
-        id="standard-basic"
-        label="Wpisz miejscowosć"
-        value={inputCity}
-      />
-      <TextField
         onChange={inputStreetHandler}
         className={classes.comment}
         id="standard-basic"
-        label="Wpisz ulicę"
+        label="Wpisz ulice"
         value={inputStreet}
       />
-      <div className={classes.buttons}>
-        <Button
-          onClick={randomGameHandler}
-          className={classes.styledButton}
-          type="button"
-          variant="contained"
-          color="primary"
-        >
-          Nowe miejsce
-        </Button>
-        <Button
-          className={classes.styledButton}
-          type="submit"
-          variant="contained"
-          color="primary"
-        >
-          Odgadnij
-        </Button>
-      </div>
+      <Button
+        className={classes.styledButton}
+        type="submit"
+        variant="contained"
+        color="primary"
+      >
+        Odgadnij
+      </Button>
     </form>
   );
 };
 
-export default withStyles(styles)(FormGame);
+export default withStyles(styles)(AddComment);

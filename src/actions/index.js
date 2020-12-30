@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 
-export const addComment = (city, street, currentTime) => ({
-  type: "ADD_NEW_GUESS",
-  payload: { id: uuidv4(), city: city, street: street, time: currentTime },
+export const addComment = (street) => ({
+  type: "ADD_NEW_COMMENT",
+  payload: { id: uuidv4(), street: street },
 });
 
 export const setCurrentGame = (currentGame) => ({
