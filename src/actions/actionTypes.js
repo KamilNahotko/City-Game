@@ -1,0 +1,7 @@
+export const ADD_NEW_COMMENT = "ADD_NEW_COMMENT";
+export const SET_CURRENT_GAME = "SET_CURRENT_GAME";
+
+export const AuthActionType = {
+  REGISTER_SUCCESS: "REGISTER_SUCCESS",
+  REGISTER_FAIL: "REGISTER_FAIL",
+};
