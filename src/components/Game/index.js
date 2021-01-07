@@ -6,9 +6,9 @@ import ListComments from "./ListComments";
 import AddComment from "./AddComment";
 
 const Game = ({ classes }) => {
-  const state = useSelector((state) => state.comments);
-  const comments = useSelector((state) => state.comments);
-  const currentGame = useSelector((state) => state.currentGame);
+  const state = useSelector((state) => state.CommentsReducer.comments);
+  const comments = useSelector((state) => state.CommentsReducer.comments);
+  const currentGame = useSelector((state) => state.CommentsReducer.currentGame);
 
   return (
     <Paper className={classes.styledPaper}>

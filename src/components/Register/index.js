@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RegisterAuth } from "../../actions";
 import {
   withStyles,
   Grid,
@@ -12,8 +14,47 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import styles from "./styles";
 
 const Register = ({ classes, setTypeModal }) => {
+  const [userState, setUserState] = useState({});
+  const user = useSelector((state) => state.AuthReducer);
+  const dispatch = useDispatch();
+
   const changeModal = () => {
     setTypeModal("login");
+  };
+
+  const inputNameHandler = (e) => {
+    const name = e.target.value;
+    setUserState({
+      ...userState,
+      name,
+    });
+  };
+
+  const inputEmailHandler = (e) => {
+    const email = e.target.value;
+    setUserState({
+      ...userState,
+      email,
+    });
+  };
+  const inputPasswordHandler = (e) => {
+    const password = e.target.value;
+    setUserState({
+      ...userState,
+      password,
+    });
+  };
+  const inputRePasswordHandler = (e) => {
+    const password_confirmation = e.target.value;
+    setUserState({
+      ...userState,
+      password_confirmation,
+    });
+  };
+
+  const submitRegister = (e) => {
+    e.preventDefault();
+    dispatch(RegisterAuth(userState));
   };
 
   return (
@@ -39,7 +80,7 @@ const Register = ({ classes, setTypeModal }) => {
         <Typography variant="h4" component="h2" gutterBottom>
           Rejestracja
         </Typography>
-        <form className={classes.form}>
+        <form onSubmit={submitRegister} className={classes.form}>
           <Grid spacing={3} container>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -52,6 +93,7 @@ const Register = ({ classes, setTypeModal }) => {
                 name="nickname"
                 autoComplete="nickname"
                 autoFocus
+                onChange={inputNameHandler}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -64,6 +106,7 @@ const Register = ({ classes, setTypeModal }) => {
                 label="Adres E-mail"
                 name="email"
                 autoComplete="email"
+                onChange={inputEmailHandler}
               />
             </Grid>
           </Grid>
@@ -77,6 +120,7 @@ const Register = ({ classes, setTypeModal }) => {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={inputPasswordHandler}
           />
           <TextField
             variant="outlined"
@@ -88,6 +132,7 @@ const Register = ({ classes, setTypeModal }) => {
             type="repeatPassword"
             id="repeatPassword"
             autoComplete="current-password"
+            onChange={inputRePasswordHandler}
           />
           <Button
             className={classes.submit}
