@@ -49,5 +49,4 @@ const clearInput = (items) =>
     items.map((item)=>{
         cy.get(item.name).type('{selectall}{del}');
     })
-    
 }
