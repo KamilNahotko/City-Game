@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   withStyles,
   Grid,
@@ -11,8 +13,35 @@ import {
 import FacebookIcon from "@material-ui/icons/Facebook";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import styles from "./styles";
+import { LoginAuth } from "../../actions";
 
 const Login = ({ classes, isVisibility, setIsVisibility, setTypeModal }) => {
+  const [userState, setUserState] = useState({});
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const inputEmailHandler = (e) => {
+    const email = e.target.value;
+    setUserState({
+      ...userState,
+      email,
+    });
+  };
+
+  const inputPasswordHandler = (e) => {
+    const password = e.target.value;
+    setUserState({
+      ...userState,
+      password,
+    });
+  };
+
+  const submitRegister = (e) => {
+    e.preventDefault();
+    dispatch(LoginAuth(userState, history));
+  };
+
+  //UI functions
   const toggler = () => {
     setIsVisibility(!isVisibility);
   };
@@ -49,8 +78,9 @@ const Login = ({ classes, isVisibility, setIsVisibility, setTypeModal }) => {
           Logowanie
         </Typography>
 
-        <form className={classes.form}>
+        <form onSubmit={submitRegister} className={classes.form}>
           <TextField
+            onChange={inputEmailHandler}
             variant="outlined"
             margin="normal"
             required
@@ -62,6 +92,7 @@ const Login = ({ classes, isVisibility, setIsVisibility, setTypeModal }) => {
             autoFocus
           />
           <TextField
+            onChange={inputPasswordHandler}
             variant="outlined"
             margin="normal"
             required

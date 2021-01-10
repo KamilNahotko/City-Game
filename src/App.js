@@ -6,16 +6,22 @@ import MainPage from "./pages/MainPage";
 import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
 import UserSettingsPage from "./pages/UserSettingsPage";
+import PrivateRoute from "./routers/PrivateRoute";
+import { routes } from "./routers/routes";
 
 const App = () => (
   <Provider store={store}>
     <BrowserRouter>
       <GlobalStyle />
       <Switch>
-        <Route exact path="/" component={MainPage} />
-        <Route exact path="/home" component={HomePage} />
-        <Route exact path="/user-page" component={UserPage} />
-        <Route exact path="/user-settings" component={UserSettingsPage} />
+        <Route exact path={routes.mainPage} component={MainPage} />
+        <PrivateRoute exact path={routes.home} component={HomePage} />
+        <PrivateRoute exact path={routes.userPage} component={UserPage} />
+        <PrivateRoute
+          exact
+          path={routes.userSettings}
+          component={UserSettingsPage}
+        />
       </Switch>
     </BrowserRouter>
   </Provider>

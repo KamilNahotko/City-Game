@@ -18,6 +18,11 @@ const styles = (theme) => ({
   iconButton: {
     margin: theme.spacing(4, 0, 0, 4),
   },
+  alert: {
+    width: "100%",
+    justifyContent: "center",
+    margin: theme.spacing(2),
+  },
 });
 
 export default styles;

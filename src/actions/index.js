@@ -29,3 +29,18 @@ export const RegisterAuth = (userState) => {
     }
   };
 };
+
+export const LoginAuth = (userState, history) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.post("/login", userState);
+      const { data } = res;
+      console.log(data);
+      dispatch({ type: AuthActionType.LOGIN_SUCCESS, payload: data });
+      history.push("/home");
+    } catch (error) {
+      console.error(error);
+      dispatch({ type: AuthActionType.LOGIN_FAIL, payload: {} });
+    }
+  };
+};

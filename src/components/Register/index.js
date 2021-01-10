@@ -10,6 +10,7 @@ import {
   Typography,
   Link,
 } from "@material-ui/core";
+import MuiAlert from "@material-ui/lab/Alert";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import styles from "./styles";
 
@@ -17,10 +18,6 @@ const Register = ({ classes, setTypeModal }) => {
   const [userState, setUserState] = useState({});
   const user = useSelector((state) => state.AuthReducer);
   const dispatch = useDispatch();
-
-  const changeModal = () => {
-    setTypeModal("login");
-  };
 
   const inputNameHandler = (e) => {
     const name = e.target.value;
@@ -57,6 +54,15 @@ const Register = ({ classes, setTypeModal }) => {
     dispatch(RegisterAuth(userState));
   };
 
+  // UI functions
+  const changeModal = () => {
+    setTypeModal("login");
+  };
+
+  function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
+
   return (
     <Grid
       className={classes.root}
@@ -80,6 +86,11 @@ const Register = ({ classes, setTypeModal }) => {
         <Typography variant="h4" component="h2" gutterBottom>
           Rejestracja
         </Typography>
+        {user.isLoggedIn && (
+          <Alert className={classes.alert} severity="success">
+            Rejestracja została pomyślnie przeprowadzona!
+          </Alert>
+        )}
         <form onSubmit={submitRegister} className={classes.form}>
           <Grid spacing={3} container>
             <Grid item xs={12} sm={6}>
@@ -103,6 +114,7 @@ const Register = ({ classes, setTypeModal }) => {
                 required
                 fullWidth
                 id="email"
+                type="email"
                 label="Adres E-mail"
                 name="email"
                 autoComplete="email"
@@ -129,7 +141,7 @@ const Register = ({ classes, setTypeModal }) => {
             fullWidth
             name="repeatPassword"
             label="Powtórz Hasło"
-            type="repeatPassword"
+            type="password"
             id="repeatPassword"
             autoComplete="current-password"
             onChange={inputRePasswordHandler}
