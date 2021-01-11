@@ -1,5 +1,4 @@
 import { AuthActionType } from "../actions/actionTypes";
-import axios from "axios";
 const authState = {
   isLoggedIn: false,
   access_token: "",
@@ -12,7 +11,7 @@ const LoginReducer = (state = authState, action) => {
     case AuthActionType.LOGIN_SUCCESS:
       const newAuthState = {
         isLoggedIn: true,
-        user: action.payload,
+        ...action.payload,
       };
       localStorage.setItem("auth", JSON.stringify(newAuthState));
       return newAuthState;
@@ -22,22 +21,5 @@ const LoginReducer = (state = authState, action) => {
       return state;
   }
 };
-
-const getAuthState = () => {
-  const auth = localStorage.getItem("auth");
-  try {
-    const authObj = JSON.parse(auth);
-    const { expires_at, jwttoken } = authObj.user;
-    if (new Date(expires_at) > new Date()) {
-      axios.defaults.headers.common["Authorization"] = `Bearer ${jwttoken}`;
-      return authObj;
-    }
-    return authState;
-  } catch (error) {
-    return authState;
-  }
-};
-
-console.log(getAuthState());
 
 export default LoginReducer;

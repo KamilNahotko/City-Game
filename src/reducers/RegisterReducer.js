@@ -12,12 +12,12 @@ const authState = {
   },
 };
 
-const AuthReducer = (state = authState, action) => {
+const RegisterReducer = (state = authState, action) => {
   switch (action.type) {
     case AuthActionType.REGISTER_SUCCESS:
       return {
         isLoggedIn: true,
-        user: action.payload,
+        ...action.payload,
       };
     case AuthActionType.REGISTER_FAIL:
       return state;
@@ -26,4 +26,4 @@ const AuthReducer = (state = authState, action) => {
   }
 };
 
-export default AuthReducer;
+export default RegisterReducer;

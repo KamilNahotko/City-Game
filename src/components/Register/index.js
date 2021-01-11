@@ -16,7 +16,7 @@ import styles from "./styles";
 
 const Register = ({ classes, setTypeModal }) => {
   const [userState, setUserState] = useState({});
-  const user = useSelector((state) => state.AuthReducer);
+  const user = useSelector((state) => state.RegisterReducer);
   const dispatch = useDispatch();
 
   const inputNameHandler = (e) => {
