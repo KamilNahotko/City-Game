@@ -44,3 +44,15 @@ export const LoginAuth = (userState, history) => {
     }
   };
 };
+
+export const LogoutAuth = (history) => {
+  return async (dispatch) => {
+    try {
+      localStorage.removeItem("auth");
+      history.push("/");
+    } catch (error) {
+      console.error(error);
+      dispatch({ type: AuthActionType.LOGIN_FAIL, payload: {} });
+    }
+  };
+};

@@ -1,4 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { LogoutAuth } from "../../actions";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useTheme, makeStyles } from "@material-ui/core/styles";
@@ -26,6 +29,7 @@ import GroupIcon from "@material-ui/icons/Group";
 import GavelIcon from "@material-ui/icons/Gavel";
 import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
 
+//UI functions
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
-  // necessary for content to be below app bar
+
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
@@ -69,6 +73,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = (props) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const logout = () => {
+    dispatch(LogoutAuth(history));
+  };
+
+  //UI functions
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -181,7 +193,7 @@ const Navbar = (props) => {
                 <MenuItem onClick={handleClose}>Moje konto</MenuItem>
               </Link>
               <Link className={classes.styledLink} to="/">
-                <MenuItem onClick={handleClose}>Wyloguj</MenuItem>
+                <MenuItem onClick={(handleClose, logout)}>Wyloguj</MenuItem>
               </Link>
             </Menu>
           </div>
