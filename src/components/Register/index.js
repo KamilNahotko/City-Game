@@ -9,6 +9,7 @@ import {
   Button,
   Typography,
   Link,
+  CircularProgress,
 } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -17,6 +18,9 @@ import styles from "./styles";
 const Register = ({ classes, setTypeModal }) => {
   const [userState, setUserState] = useState({});
   const user = useSelector((state) => state.RegisterReducer);
+  const RegisterIn = useSelector((state) => state.RegisterReducer.RegisterIn);
+  const typeAlert = useSelector((state) => state.AlertReducer.type);
+  const messageAlert = useSelector((state) => state.AlertReducer.message);
   const dispatch = useDispatch();
 
   const inputNameHandler = (e) => {
@@ -59,10 +63,6 @@ const Register = ({ classes, setTypeModal }) => {
     setTypeModal("login");
   };
 
-  function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-  }
-
   return (
     <Grid
       className={classes.root}
@@ -86,10 +86,19 @@ const Register = ({ classes, setTypeModal }) => {
         <Typography variant="h4" component="h2" gutterBottom>
           Rejestracja
         </Typography>
+        {messageAlert && (
+          <>
+            <MuiAlert elevation={6} variant="filled" severity={typeAlert}>
+              {messageAlert.email}
+              {messageAlert.password}
+              {messageAlert.name}
+            </MuiAlert>
+          </>
+        )}
         {user.isLoggedIn && (
-          <Alert className={classes.alert} severity="success">
+          <MuiAlert elevation={6} variant="filled">
             Rejestracja została pomyślnie przeprowadzona!
-          </Alert>
+          </MuiAlert>
         )}
         <form onSubmit={submitRegister} className={classes.form}>
           <Grid spacing={3} container>
@@ -156,6 +165,7 @@ const Register = ({ classes, setTypeModal }) => {
             Rejestruj
           </Button>
         </form>
+        {RegisterIn && <CircularProgress />}
         <Grid container>
           <Grid item xs>
             <Link href="#" onClick={() => changeModal()} variant="body2">

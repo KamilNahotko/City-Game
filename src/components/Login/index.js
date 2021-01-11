@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { LoginAuth } from "../../actions";
 import {
   withStyles,
   Grid,
@@ -9,17 +10,20 @@ import {
   Button,
   Typography,
   Link,
+  CircularProgress,
 } from "@material-ui/core";
+import MuiAlert from "@material-ui/lab/Alert";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import styles from "./styles";
-import { LoginAuth } from "../../actions";
 
 const Login = ({ classes, isVisibility, setIsVisibility, setTypeModal }) => {
   const [userState, setUserState] = useState({});
   const dispatch = useDispatch();
+  const loggingIn = useSelector((state) => state.LoginReducer.loggingIn);
+  const typeAlert = useSelector((state) => state.AlertReducer.type);
+  const messageAlert = useSelector((state) => state.AlertReducer.message);
   const history = useHistory();
-
   const inputEmailHandler = (e) => {
     const email = e.target.value;
     setUserState({
@@ -77,7 +81,15 @@ const Login = ({ classes, isVisibility, setIsVisibility, setTypeModal }) => {
         <Typography variant="h4" component="h2" gutterBottom>
           Logowanie
         </Typography>
-
+        {messageAlert && (
+          <>
+            <MuiAlert elevation={6} variant="filled" severity={typeAlert}>
+              {messageAlert.email}
+              {messageAlert.password}
+              {messageAlert.error}
+            </MuiAlert>
+          </>
+        )}
         <form onSubmit={submitRegister} className={classes.form}>
           <TextField
             onChange={inputEmailHandler}
@@ -113,6 +125,7 @@ const Login = ({ classes, isVisibility, setIsVisibility, setTypeModal }) => {
             Zaloguj
           </Button>
         </form>
+        {loggingIn && <CircularProgress />}
         <Grid container>
           <Grid item xs>
             <Link href="#" onClick={() => changeModalToReset()} variant="body2">

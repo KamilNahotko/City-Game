@@ -4,6 +4,7 @@ import {
   ADD_NEW_COMMENT,
   SET_CURRENT_GAME,
   AuthActionType,
+  Alerts,
 } from "./actionTypes";
 
 export const addComment = (street) => ({
@@ -18,29 +19,31 @@ export const setCurrentGame = (currentGame) => ({
 
 export const RegisterAuth = (userState) => {
   return async (dispatch) => {
+    dispatch({ type: AuthActionType.REGISTER_REQUEST });
+    dispatch({ type: Alerts.CLEAR, payload: {} });
     try {
       const res = await axios.post("/register", userState);
       const { data } = res;
-      console.log(data);
       dispatch({ type: AuthActionType.REGISTER_SUCCESS, payload: data });
     } catch (error) {
-      console.error(error);
       dispatch({ type: AuthActionType.REGISTER_FAIL, payload: {} });
+      dispatch({ type: Alerts.ERROR, payload: error.response.data });
     }
   };
 };
 
 export const LoginAuth = (userState, history) => {
   return async (dispatch) => {
+    dispatch({ type: AuthActionType.LOGIN_REQUEST });
+    dispatch({ type: Alerts.CLEAR, payload: {} });
     try {
       const res = await axios.post("/login", userState);
       const { data } = res;
-      console.log(data);
       dispatch({ type: AuthActionType.LOGIN_SUCCESS, payload: data });
       history.push("/home");
     } catch (error) {
-      console.error(error);
       dispatch({ type: AuthActionType.LOGIN_FAIL, payload: {} });
+      dispatch({ type: Alerts.ERROR, payload: error.response.data });
     }
   };
 };
@@ -51,7 +54,6 @@ export const LogoutAuth = (history) => {
       localStorage.removeItem("auth");
       history.push("/");
     } catch (error) {
-      console.error(error);
       dispatch({ type: AuthActionType.LOGIN_FAIL, payload: {} });
     }
   };
