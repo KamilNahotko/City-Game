@@ -8,10 +8,11 @@ const pass = [
     {email: faker.internet.email(), password:faker.internet.password()},
     {email: faker.internet.email(), password:faker.internet.password()},
     {email: faker.internet.email(), password:faker.internet.password()},
+    {email: 'tester@test.com', password:'test123'},
 ]
 
 
-describe('Main Page', () => {
+describe('Login', () => {
     context('uruchomienie storny i sprawdzanie czy wszystko jest ok',()=>{
         it('City Game visit',()=>{
             cy.visit(urlMain)
@@ -30,6 +31,7 @@ describe('Main Page', () => {
                 cy.get('#email').type(item.email)
                 cy.get('#password').type(item.password)
                 cy.get('.Login-form-10 > .MuiButtonBase-root').click()
+                cy.wait(10000)
                 cy.url().should('eq', urlHome)
                 cy.visit(urlMain)
             })

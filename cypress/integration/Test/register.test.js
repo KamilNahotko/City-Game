@@ -3,7 +3,7 @@ const faker = require('faker');
 const url='http://localhost:3000/'
 
 
-describe('Main Page', () => {
+describe('Register', () => {
     context('uruchomienie storny i sprawdzanie czy wszystko jest ok',()=>{
         it('City Game visit',()=>{
             cy.visit(url)

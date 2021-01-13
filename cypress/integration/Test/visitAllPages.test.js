@@ -8,18 +8,22 @@ const urlUserSettings   = "http://localhost:3000/user-settings"
 
 
 describe('Add com', () => {
-    context('Chodzenie po stronach',()=>{
-        typeUrl(urlMain);
-        typeUrl(urlHome);
-        typeUrl(urlUserPage);
-        typeUrl(urlUserSettings);
+    context('logowanie i wchodzenie',()=>{
+        it('do it',()=>{
+            cy.visit(urlMain)
+            cy.get(':nth-child(4) > .MuiButtonBase-root').click()
+            cy.get('#email').type('tester@test.com')
+            cy.get('#password').type('test123')
+            cy.get('.Login-form-10 > .MuiButtonBase-root').click()
+            cy.wait(10000)
+            cy.url().should('eq', urlHome)
+            cy.get('.MuiToolbar-root > div > .MuiButtonBase-root').click()
+            cy.get('[tabindex="0"] > .MuiButtonBase-root').click()
+            cy.url().should('eq', urlUserPage)
+            cy.get('.makeStyles-styledLink-65 > .MuiButtonBase-root').click()
+            cy.url().should('eq',urlUserSettings)
+            cy.get('#password').should('exist')
+            cy.get('#password').should('exist')
+        })
     })
 })
-
-function typeUrl(url) {
-    it('Visit: ' + url, ()=>{
-        cy.visit(url)
-        cy.url().should('eq', url)
-    })
-    
-}
