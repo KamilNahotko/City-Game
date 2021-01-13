@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { LogoutAuth } from "../../actions";
+import { LogoutAuth } from "../../actions/LogoutActions";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useTheme, makeStyles } from "@material-ui/core/styles";

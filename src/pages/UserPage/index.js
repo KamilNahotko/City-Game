@@ -48,7 +48,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function UserPage(props) {
+function UserPage() {
+  //Ui functions
   const classes = useStyles();
   return (
     <div className={classes.root}>
