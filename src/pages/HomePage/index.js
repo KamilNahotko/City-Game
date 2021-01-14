@@ -1,18 +1,14 @@
 import React from "react";
 import { withStyles } from "@material-ui/core";
-import Navbar from "../../components/Navbar";
+import HomeTemplate from "../../templates/HomeTemplate";
 import styles from "./styles";
 import Game from "../../components/Game";
 
-const HomePage = ({ classes }) => {
+const HomePage = () => {
   return (
-    <div className={classes.root}>
-      <Navbar />
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Game />
-      </main>
-    </div>
+    <HomeTemplate>
+      <Game />
+    </HomeTemplate>
   );
 };
 

@@ -1,15 +1,3 @@
-const styles = (theme) => ({
-  root: {
-    display: "flex",
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-  typography: {
-    flexGrow: 1,
-  },
-  toolbar: theme.mixins.toolbar,
-});
+const styles = (theme) => ({});
 
 export default styles;

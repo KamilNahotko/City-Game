@@ -4,7 +4,7 @@ import { Profile } from "../../actions/UserProfileActions";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import Navbar from "../../components/Navbar";
+import HomeTemplate from "../../templates/HomeTemplate";
 import AppBar from "@material-ui/core/AppBar";
 import Tab from "@material-ui/core/Tab";
 import TabContext from "@material-ui/lab/TabContext";
@@ -31,45 +31,41 @@ const UserSettingsPage = ({ classes }) => {
   };
 
   return (
-    <div className={classes.root}>
-      <Navbar />
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Grid container justify="center" alignItems="center">
-          {profileState.loadingIn === true ? (
-            <>
-              <UserProfileHeader />
-              <Grid container justify="center" alignItems="center">
-                <TabContext value={value}>
-                  <AppBar position="static">
-                    <TabList
-                      centered
-                      onChange={handleChange}
-                      aria-label="simple tabs example"
-                    >
-                      <Tab label="Zmiana hasła" value="1" />
-                      <Tab label="zmiana e-maila" value="2" />
-                      <Tab label="zmiana avataru" value="3" />
-                    </TabList>
-                  </AppBar>
-                  <TabPanel value="1">
-                    <PasswordChange />
-                  </TabPanel>
-                  <TabPanel value="2">
-                    <EmailChange />
-                  </TabPanel>
-                  <TabPanel value="3">
-                    <AvatarChange />
-                  </TabPanel>
-                </TabContext>
-              </Grid>
-            </>
-          ) : (
-            <Loading />
-          )}
-        </Grid>
-      </main>
-    </div>
+    <HomeTemplate>
+      <Grid container justify="center" alignItems="center">
+        {profileState.loadingIn === true ? (
+          <>
+            <UserProfileHeader />
+            <Grid container justify="center" alignItems="center">
+              <TabContext value={value}>
+                <AppBar position="static">
+                  <TabList
+                    centered
+                    onChange={handleChange}
+                    aria-label="simple tabs example"
+                  >
+                    <Tab label="Zmiana hasła" value="1" />
+                    <Tab label="zmiana e-maila" value="2" />
+                    <Tab label="zmiana avataru" value="3" />
+                  </TabList>
+                </AppBar>
+                <TabPanel value="1">
+                  <PasswordChange />
+                </TabPanel>
+                <TabPanel value="2">
+                  <EmailChange />
+                </TabPanel>
+                <TabPanel value="3">
+                  <AvatarChange />
+                </TabPanel>
+              </TabContext>
+            </Grid>
+          </>
+        ) : (
+          <Loading />
+        )}
+      </Grid>
+    </HomeTemplate>
   );
 };
 

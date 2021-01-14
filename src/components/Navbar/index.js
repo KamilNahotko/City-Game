@@ -27,7 +27,7 @@ import LocationCityIcon from "@material-ui/icons/LocationCity";
 import HomeIcon from "@material-ui/icons/Home";
 import GroupIcon from "@material-ui/icons/Group";
 import GavelIcon from "@material-ui/icons/Gavel";
-import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
+import SportsEsports from "@material-ui/icons/SportsEsports";
 
 //UI functions
 const drawerWidth = 240;
@@ -129,17 +129,19 @@ const Navbar = (props) => {
       </List>
       <Divider />
       <List component="nav" aria-label="main mailbox folders">
+        <Link className={classes.styledLink} to="/new-game">
+          <ListItem button>
+            <ListItemIcon>
+              <SportsEsports />
+            </ListItemIcon>
+            <ListItemText primary="Dodaj Nową Gre" />
+          </ListItem>
+        </Link>
         <ListItem button>
           <ListItemIcon>
             <GavelIcon />
           </ListItemIcon>
           <ListItemText primary="Zasady Gry" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <PermContactCalendarIcon />
-          </ListItemIcon>
-          <ListItemText primary="Kontakt" />
         </ListItem>
       </List>
     </div>

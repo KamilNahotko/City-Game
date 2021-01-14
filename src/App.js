@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { routes } from "./routers/routes";
 import { Provider } from "react-redux";
 import store from "./store";
 import GlobalStyle from "./theme/GlobalStyle";
@@ -7,7 +8,7 @@ import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
 import UserSettingsPage from "./pages/UserSettingsPage";
 import PrivateRoute from "./routers/PrivateRoute";
-import { routes } from "./routers/routes";
+import NewGame from "./pages/NewGame";
 
 const App = () => (
   <Provider store={store}>
@@ -22,6 +23,7 @@ const App = () => (
           path={routes.userSettings}
           component={UserSettingsPage}
         />
+        <PrivateRoute exact path={routes.newGame} component={NewGame} />
       </Switch>
     </BrowserRouter>
   </Provider>
