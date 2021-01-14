@@ -1,13 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./styles";
-import { withStyles, Grid, Paper, List } from "@material-ui/core";
-import ListComments from "./ListComments";
-import AddComment from "./AddComment";
+import { withStyles, Grid, Paper } from "@material-ui/core";
+import DescriptionGame from "./DescriptionGame";
+import FormGame from "./FormGame";
 
 const Game = ({ classes }) => {
   const state = useSelector((state) => state.CommentsReducer.comments);
-  const comments = useSelector((state) => state.CommentsReducer.comments);
   const currentGame = useSelector((state) => state.CommentsReducer.currentGame);
 
   return (
@@ -21,12 +20,8 @@ const Game = ({ classes }) => {
           />
         </Grid>
         <Grid lg={6} sm={12} item>
-          <List className={classes.list}>
-            {comments.map((comment) => (
-              <ListComments key={comment.id} street={comment.street} />
-            ))}
-          </List>
-          <AddComment />
+          <DescriptionGame />
+          <FormGame />
         </Grid>
       </Grid>
     </Paper>
