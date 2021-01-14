@@ -25,7 +25,7 @@ const PasswordChange = () => (
         margin="normal"
         required
         fullWidth
-        id="password"
+        id="newPassword"
         label="Nowe Hasło"
         name="password"
         autoComplete="password"
@@ -37,7 +37,7 @@ const PasswordChange = () => (
         margin="normal"
         required
         fullWidth
-        id="password"
+        id="reNewPassword"
         label="Powtórz Hasło"
         name="password"
         autoComplete="password"
