@@ -20,7 +20,9 @@ const UserProfileHeader = ({ classes }) => {
   return (
     <Grid container justify="center" alignItems="center">
       <Grid item container justify="center" alignItems="center" xs={6}>
-        <Avatar className={classes.large}>{profileState.name}</Avatar>
+        <Avatar className={classes.large}>
+          {profileState.name.charAt(0).toUpperCase()}
+        </Avatar>
         <Typography className={classes.typography}>
           {profileState.name}
         </Typography>
