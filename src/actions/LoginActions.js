@@ -5,7 +5,7 @@ export const LoginAuth = (userState, history) => {
     dispatch({ type: AuthActionType.LOGIN_REQUEST });
     dispatch({ type: Alerts.CLEAR, payload: {} });
     try {
-      const res = await axios.post("/login", userState);
+      const res = await axios.post("/auth/login", userState);
       const { data } = res;
       dispatch({ type: AuthActionType.LOGIN_SUCCESS, payload: data });
       history.push("/home");

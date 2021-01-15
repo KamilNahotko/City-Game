@@ -95,7 +95,7 @@ const Register = ({ classes, setTypeModal }) => {
             </MuiAlert>
           </>
         )}
-        {user.isLoggedIn && (
+        {user.isRegisterIn && (
           <MuiAlert elevation={6} variant="filled">
             Rejestracja została pomyślnie przeprowadzona!
           </MuiAlert>

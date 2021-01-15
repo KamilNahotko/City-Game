@@ -34,6 +34,9 @@ const styles = (theme) => ({
   styledButton: {
     margin: theme.spacing(2),
   },
+  styledMuiAlert: {
+    marginBottom: theme.spacing(2),
+  },
 });
 
 export default styles;

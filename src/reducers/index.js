@@ -4,6 +4,7 @@ import RegisterReducer from "./RegisterReducer";
 import LoginReducer from "./LoginReducer";
 import AlertReducer from "./AlertReducer";
 import UserProfileReducer from "./UserProfileReducer";
+import AddGameReducer from "./AddGameReducer";
 
 export default combineReducers({
   CommentsReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   LoginReducer,
   AlertReducer,
   UserProfileReducer,
+  AddGameReducer,
 });

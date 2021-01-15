@@ -6,7 +6,7 @@ export const RegisterAuth = (userState) => {
     dispatch({ type: AuthActionType.REGISTER_REQUEST });
     dispatch({ type: Alerts.CLEAR, payload: {} });
     try {
-      const res = await axios.post("/register", userState);
+      const res = await axios.post("/auth/register", userState);
       const { data } = res;
       dispatch({ type: AuthActionType.REGISTER_SUCCESS, payload: data });
     } catch (error) {

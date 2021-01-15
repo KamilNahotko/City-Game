@@ -7,7 +7,7 @@ export const Profile = () => {
     const Header = authHeader();
     dispatch({ type: ProfileActionType.PROFILE_REQUEST });
     axios
-      .get("/profile", {
+      .get("/auth/profile", {
         headers: { Authorization: Header.Authorization },
       })
       .then((response) => {

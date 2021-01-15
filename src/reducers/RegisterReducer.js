@@ -1,6 +1,6 @@
 import { AuthActionType } from "../actions/actionTypes";
 const authState = {
-  isLoggedIn: false,
+  isRegisterIn: false,
   RegisterIn: false,
   message: "",
   user: {
@@ -22,7 +22,7 @@ const RegisterReducer = (state = authState, action) => {
       };
     case AuthActionType.REGISTER_SUCCESS:
       return {
-        isLoggedIn: true,
+        isRegisterIn: true,
         ...action.payload,
       };
     case AuthActionType.REGISTER_FAIL:
