@@ -1,8 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styles from "./styles";
 import { Typography, withStyles, Paper } from "@material-ui/core";
 
 const DescriptionGame = ({ classes }) => {
+  const LoadGames = useSelector((state) => state.LoadGameReducer);
   return (
     <>
       <div>
@@ -15,10 +17,7 @@ const DescriptionGame = ({ classes }) => {
             Opis:
           </Typography>
           <p className={classes.styledParagraph}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto
-            accusamus, veniam quidem ducimus possimus beatae debitis voluptate
-            necessitatibus repellendus explicabo, eveniet cupiditate dolore,
-            tenetur excepturi neque tempore reiciendis quis dicta.
+            {LoadGames.posts_with_comments[LoadGames.randomNumber].body}
           </p>
         </Paper>
       </div>

@@ -1,14 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment as addCommentAction } from "../../../actions";
 import styles from "./styles";
-import { TextField, withStyles, Button } from "@material-ui/core";
-import { setCurrentGame } from "../../../actions/index";
+import {
+  TextField,
+  withStyles,
+  Button,
+  CircularProgress,
+} from "@material-ui/core";
+import AutorenewIcon from "@material-ui/icons/Autorenew";
+import { LoadGame } from "../../../actions/LoadGameActions";
+import { AddAnswer } from "../../../actions/AddAnswerActions";
+import { DeleteGame } from "../../../actions/DeleteGameActions";
 
 const AddComment = ({ classes }) => {
   const [inputStreet, setInputStreet] = useState("");
-  const state = useSelector((state) => state.games);
   const dispatch = useDispatch();
+  const loadGamesState = useSelector((state) => state.LoadGameReducer);
+  const addAnswerState = useSelector((state) => state.AddAnswerReducer);
+  const postNumber =
+    loadGamesState.posts_with_comments[loadGamesState.randomNumber].id;
+
+  const nextGame = () => {
+    dispatch(LoadGame());
+  };
+
+  useEffect(() => {
+    if (addAnswerState.isCorrect === true) {
+      dispatch(DeleteGame(postNumber));
+      dispatch(LoadGame());
+    }
+  }, [addAnswerState]);
 
   const inputStreetHandler = (e) => {
     setInputStreet(e.target.value);
@@ -16,18 +37,8 @@ const AddComment = ({ classes }) => {
 
   const submitCommentHandler = (e) => {
     e.preventDefault();
-    dispatch(addCommentAction(inputStreet));
+    dispatch(AddAnswer({ body: inputStreet }, postNumber));
     setInputStreet("");
-  };
-
-  const randomGameHandler = () => {
-    const randomIndex = Math.floor(Math.random() * state.length);
-    console.log(randomIndex);
-    if (state[0].isGuessed === true) {
-      dispatch(setCurrentGame(randomIndex));
-    } else {
-      console.log("Brak nowych konkurencji");
-    }
   };
 
   return (
@@ -52,6 +63,18 @@ const AddComment = ({ classes }) => {
       >
         Odgadnij
       </Button>
+      <Button
+        className={classes.styledButton}
+        variant="contained"
+        color="primary"
+        onClick={nextGame}
+      >
+        <AutorenewIcon />
+        Losuj nowe miejsce
+      </Button>
+      <span className={classes.styledCircularProgress}>
+        {addAnswerState.isLoading && <CircularProgress />}
+      </span>
     </form>
   );
 };

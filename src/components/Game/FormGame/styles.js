@@ -10,6 +10,10 @@ const styles = (theme) => ({
   styledButton: {
     marginTop: theme.spacing(4),
   },
+  styledCircularProgress: {
+    marginTop: theme.spacing(4),
+    textAlign: "center",
+  },
 });
 
 export default styles;

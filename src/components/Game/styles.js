@@ -19,6 +19,15 @@ const styles = (theme) => ({
     display: "flex",
     justifyContent: "center",
   },
+  styledDivAlert: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+  styledLink: {
+    textDecoration: "none",
+  },
 });
 
 export default styles;

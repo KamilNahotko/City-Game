@@ -1,4 +1,4 @@
-import { AddGameActionType } from "../actions/actionTypes";
+import { GameActionType } from "../actions/actionTypes";
 const gameState = {
   isComplete: false,
   id_usera: "",
@@ -23,16 +23,16 @@ const gameState = {
 
 const AddGameReducer = (state = gameState, action) => {
   switch (action.type) {
-    case AddGameActionType.ADD_GAME_REQUEST:
+    case GameActionType.ADD_GAME_REQUEST:
       return {
         isComplete: false,
       };
-    case AddGameActionType.ADD_GAME_SUCCESS:
+    case GameActionType.ADD_GAME_SUCCESS:
       return {
         isComplete: true,
         ...action.payload,
       };
-    case AddGameActionType.ADD_GAME_FAIL:
+    case GameActionType.ADD_GAME_FAIL:
       return {
         ...state,
       };
