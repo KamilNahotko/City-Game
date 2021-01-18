@@ -32,8 +32,10 @@ describe('Login', () => {
                 cy.get('#password').type(item.password)
                 cy.get('.Login-form-10 > .MuiButtonBase-root').click()
                 cy.wait(10000)
+                cy.get('.Login-wrapper-9 > .MuiPaper-root').should('exist')
                 cy.url().should('eq', urlHome)
                 cy.visit(urlMain)
+                
             })
         })
     })

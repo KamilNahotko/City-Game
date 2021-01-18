@@ -9,6 +9,7 @@ import UserPage from "./pages/UserPage";
 import UserSettingsPage from "./pages/UserSettingsPage";
 import PrivateRoute from "./routers/PrivateRoute";
 import NewGame from "./pages/NewGame";
+import GameRules from "./pages/GameRules";
 
 const App = () => (
   <Provider store={store}>
@@ -24,6 +25,7 @@ const App = () => (
           component={UserSettingsPage}
         />
         <PrivateRoute exact path={routes.newGame} component={NewGame} />
+        <PrivateRoute exact path={routes.gameRule} component={GameRules} />
       </Switch>
     </BrowserRouter>
   </Provider>

@@ -137,12 +137,14 @@ const Navbar = (props) => {
             <ListItemText primary="Dodaj Nową Gre" />
           </ListItem>
         </Link>
-        <ListItem button>
-          <ListItemIcon>
-            <GavelIcon />
-          </ListItemIcon>
-          <ListItemText primary="Zasady Gry" />
-        </ListItem>
+        <Link className={classes.styledLink} to="/game-rules">
+          <ListItem button>
+            <ListItemIcon>
+              <GavelIcon />
+            </ListItemIcon>
+            <ListItemText primary="Zasady Gry" />
+          </ListItem>
+        </Link>
       </List>
     </div>
   );

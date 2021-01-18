@@ -14,6 +14,9 @@ import Login from "../../components/Login";
 import Register from "../../components/Register";
 import ResetPassword from "../../components/ResetPassword";
 
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+
 const MainPage = ({ classes }) => {
   const [isVisibility, setIsVisibility] = useState(false);
   const [typeModal, setTypeModal] = useState("login");
@@ -49,15 +52,7 @@ const MainPage = ({ classes }) => {
             component="p"
             className={classes.styledParagraph}
           >
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
+           <AssignmentIcon/> Gra polega na odgadywaniu miejsc po zdjęciu <AddAPhotoIcon/>
           </Typography>
         </Grid>
         <Grid item xs={12}>
