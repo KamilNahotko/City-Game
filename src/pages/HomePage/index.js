@@ -5,7 +5,7 @@ import HomeTemplate from "../../templates/HomeTemplate";
 import styles from "./styles";
 import Game from "../../components/Game";
 import Alert from "@material-ui/lab/Alert";
-import cheet from "cheet.js";
+import cheet from "cheet";
 
 const HomePage = ({ classes }) => {
   const alertsState = useSelector((state) => state.AlertReducer);
