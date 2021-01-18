@@ -19,7 +19,6 @@ export const AddAnswer = (gameState, postNumber) => {
     } catch (error) {
       dispatch({ type: GameActionType.ADD_ANSWER_FAIL, payload: {} });
       dispatch({ type: Alerts.ERROR, payload: error.response });
-      console.log(error);
     }
   };
 };

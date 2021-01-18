@@ -11,7 +11,6 @@ export const GameRanking = () => {
         headers: { Authorization: Header.Authorization },
       })
       .then((response) => {
-        console.log(response.data);
         dispatch({
           type: GameRankingType.LOAD_RANKING_SUCCESS,
           payload: response.data,

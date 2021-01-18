@@ -4,7 +4,6 @@ import { authHeader } from "../authHeader";
 
 export const DeleteGame = (postNumber) => {
   return async (dispatch) => {
-    console.log(postNumber);
     const Header = authHeader();
     dispatch({ type: GameActionType.DELETE_ANSWER_REQUEST });
     dispatch({ type: Alerts.CLEAR, payload: {} });
