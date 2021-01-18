@@ -1,6 +1,7 @@
 import { GameActionType } from "../actions/actionTypes";
 const gameState = {
   isComplete: false,
+  isLoading: false,
   id_usera: "",
   post: {
     title: "",
@@ -25,7 +26,7 @@ const AddGameReducer = (state = gameState, action) => {
   switch (action.type) {
     case GameActionType.ADD_GAME_REQUEST:
       return {
-        isComplete: false,
+        isLoading: true,
       };
     case GameActionType.ADD_GAME_SUCCESS:
       return {

@@ -8,6 +8,7 @@ import {
   Typography,
   Button,
   Grid,
+  CircularProgress,
 } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
 import styles from "./styles";
@@ -16,7 +17,7 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 const AddGame = ({ classes }) => {
   const [gameState, setGameState] = useState({});
   const dispatch = useDispatch();
-  const AddGameState = useSelector((state) => state.AddGameReducer.isComplete);
+  const AddGameState = useSelector((state) => state.AddGameReducer);
   const alert = useSelector((state) => state.AlertReducer);
 
   const inputTitleHandler = (e) => {
@@ -62,7 +63,7 @@ const AddGame = ({ classes }) => {
         <Grid container>
           <Grid className={classes.styledGridLeft} item lg={6} xs={12}></Grid>
           <Grid className={classes.styledGridRight} item lg={6} xs={12}>
-            {AddGameState && (
+            {AddGameState.isComplete && (
               <MuiAlert
                 className={classes.styledMuiAlert}
                 elevation={6}
@@ -129,6 +130,9 @@ const AddGame = ({ classes }) => {
             >
               Dodaj miejsce
             </Button>
+            <span className={classes.styledCircularProgress}>
+              {AddGameState.isLoading && <CircularProgress />}
+            </span>
           </Grid>
         </Grid>
       </form>
