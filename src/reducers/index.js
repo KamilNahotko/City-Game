@@ -7,6 +7,7 @@ import AddGameReducer from "./AddGameReducer";
 import LoadGameReducer from "./LoadGameReducer";
 import AddAnswerReducer from "./AddAnswerReducer";
 import DeleteGameReducer from "./DeleteGameReducer";
+import LoadRankingReducer from "./LoadRankingReducer";
 
 export default combineReducers({
   RegisterReducer,
@@ -17,4 +18,5 @@ export default combineReducers({
   LoadGameReducer,
   AddAnswerReducer,
   DeleteGameReducer,
+  LoadRankingReducer,
 });

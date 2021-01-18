@@ -12,7 +12,7 @@ const HomePage = () => {
     <HomeTemplate>
       {alertsState.message && (
         <Alert variant="filled" severity="warning">
-          {alertsState.message.data.message + "zaloguj się ponownie"}
+          {alertsState.message.data.message + ". Zaloguj się ponownie"}
         </Alert>
       )}
       <Game />

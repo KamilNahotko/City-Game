@@ -120,12 +120,14 @@ const Navbar = (props) => {
             <ListItemText primary="Profil Użytkownika" />
           </ListItem>
         </Link>
-        <ListItem button>
-          <ListItemIcon>
-            <GroupIcon />
-          </ListItemIcon>
-          <ListItemText primary="Ranking" />
-        </ListItem>
+        <Link className={classes.styledLink} to="/ranking">
+          <ListItem button>
+            <ListItemIcon>
+              <GroupIcon />
+            </ListItemIcon>
+            <ListItemText primary="Ranking" />
+          </ListItem>
+        </Link>
       </List>
       <Divider />
       <List component="nav" aria-label="main mailbox folders">
