@@ -29,7 +29,7 @@ const AddComment = ({ classes }) => {
       dispatch(DeleteGame(postNumber));
       dispatch(LoadGame());
     }
-  }, [addAnswerState]);
+  }, [addAnswerState, dispatch, postNumber]);
 
   const inputStreetHandler = (e) => {
     setInputStreet(e.target.value);
