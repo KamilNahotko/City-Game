@@ -28,6 +28,6 @@ $ npm start
 
 ## TEAM
 
-Kamil Nahotko - Frontend
-Krzysztof Picur - Backend
-Sebastian Ćwirko - Tests
+- Kamil Nahotko - Frontend
+- Krzysztof Picur - Backend
+- Sebastian Ćwirko - Tests
