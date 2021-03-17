@@ -35,7 +35,7 @@ const AddGameReducer = (state = gameState, action) => {
       };
     case GameActionType.ADD_GAME_FAIL:
       return {
-        ...state,
+        isLoading: false,
       };
     default:
       return state;
